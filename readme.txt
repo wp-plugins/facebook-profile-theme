@@ -5,7 +5,7 @@ Donate link: http://vedovini.net/plugins
 Tags: Facebook,profile
 Requires at least: 2.7
 Tested up to: 2.9.2
-Stable tag: 1.0.2 
+Stable tag: 1.0.3 
 
 
 == Description ==
@@ -17,7 +17,7 @@ This plugin enables you to create a Facebook profile tab featuring your blog.
 
 This plugin follows the [standard WordPress installation method](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins):
 
-1. Upload the `fbprofile` folder to the `/wp-content/plugins/` directory
+1. Upload the `facebook-profile-theme` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Log in to the Facebook Developer application: http://www.facebook.com/developers/
 1. Create a new application, more info: http://developers.facebook.com/get_started.php
@@ -42,4 +42,4 @@ You will then have a new profile tab showing your last posts to people visiting 
 == Changelog ==
 
 = version 1.0 =
--
+- Initial release
