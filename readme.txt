@@ -29,7 +29,7 @@ To add your blog to your profile tab:
 1. Go to the application profile page
 1. Click on the `Go to Application` button
 1. Authorize the application
-1. Go to you profile and clic on `Add a new tab` menu, find you blog and select it. 
+1. Click on the `Add profile tab` button at the top of the page 
 
 You will then have a new profile tab showing your last posts to people visiting your profile.
 
