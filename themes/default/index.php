@@ -14,13 +14,10 @@ if (file_exists(get_stylesheet_directory().'/fbprofile.css')){
 	<?php
 	if (!isset($_POST['fb_sig_in_profile_tab'])) { ?>
 	<fb:if-is-app-user>
-		<div style="margin-bottom: 10px;"><fb:bookmark /></div>
-		<fb:else>
-			<script>
-				Facebook.showPermissionDialog('publish_stream', function() {}, true);
-			</script>
-		</fb:else>
-	</fb:if-is-app-user>
+		<div style="margin-bottom:10px;text-align:right;"><fb:add-profile-tab /><fb:bookmark /></div>
+	<fb:else>
+		<script type="text/javascript">Facebook.showPermissionDialog('publish_stream', function() {}, true);</script>
+	</fb:else></fb:if-is-app-user>
 	<?php } ?>
 
 	<?php while ( have_posts() ) : the_post() ?>
