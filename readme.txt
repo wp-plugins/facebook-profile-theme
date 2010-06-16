@@ -5,7 +5,7 @@ Donate link: http://vedovini.net/plugins
 Tags: Facebook,profile
 Requires at least: 2.7
 Tested up to: 2.9.2
-Stable tag: 1.0.4 
+Stable tag: 1.0.5 
 
 
 == Description ==
@@ -40,6 +40,9 @@ You will then have a new profile tab showing your last posts to people visiting 
 
 
 == Changelog ==
+
+= version 1.0.5 =
+- fixing application authorization issue following Facebook new SDK release
 
 = version 1.0.4 =
 - various fixes in documentation

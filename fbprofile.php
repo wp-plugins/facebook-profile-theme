@@ -39,7 +39,25 @@ class FBProfilePlugin {
 	}
 
 	function from_facebook() {
-		return isset($_POST['fb_sig']);
+		static $is_facebook;
+		
+		if (!isset($is_facebook)) {
+			$is_facebook = isset($_POST['fb_sig']);
+			
+			if ($is_facebook) {
+				$in_profile_tab = (isset($_POST['fb_sig_in_profile_tab']) && $_POST['fb_sig_in_profile_tab'] == 1);
+				$is_added = (isset($_POST['fb_sig_added']) && $_POST['fb_sig_added'] == 1);
+
+				if (!$in_profile_tab && !$is_added) {
+			        $app_id = $_POST['fb_sig_app_id'];
+			        $install_url = "http://www.facebook.com/install.php?api_key=$app_id&v=1.0";
+			        echo "<fb:redirect url='$install_url' />";
+			        die();
+				}
+			} 
+		}
+		
+		return $is_facebook;
 	}
 	
 	function get_stylesheet($stylesheet) {
