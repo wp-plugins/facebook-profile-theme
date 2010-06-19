@@ -5,7 +5,7 @@
 	Description: This plugin enables you to add your blog to your Facebook profile.
 	Author: Claude Vedovini
 	Author URI: http://vedovini.net/?utm_source=wordpress&utm_medium=plugin&utm_campaign=fbprofile
-	Version: 1.0.5
+	Version: 1.0.6
    
 	# Thanks to Malan Joubert for its Facebook theme that inspired the theme
 	# included in this plugin (http://www.foxinni.com/) and thanks to the
