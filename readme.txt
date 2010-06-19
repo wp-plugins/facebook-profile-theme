@@ -1,11 +1,11 @@
 === Facebook Profile Wordpress plugin ===
 Author: Claude Vedovini
 Contributors: cvedovini
-Donate link: http://vedovini.net/plugins
+Donate link: http://vedovini.net/plugins/?utm_source=wordpress&utm_medium=plugin&utm_campaign=fbprofile
 Tags: Facebook,profile
 Requires at least: 2.7
 Tested up to: 2.9.2
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 
 
 == Description ==
@@ -26,6 +26,7 @@ This plugin follows the [standard WordPress installation method](http://codex.wo
 1. In the `Profiles` tab, give a name to your profile tab (your blog's name for example) and set the `Tab URL` field to `index.php` 
  
 To add your blog to your profile tab:
+
 1. Go to the application profile page
 1. Click on the `Go to Application` button
 1. Authorize the application
