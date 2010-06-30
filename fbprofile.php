@@ -50,7 +50,7 @@ class FBProfilePlugin {
 
 				if (!$in_profile_tab && !$is_added) {
 			        $client_id = urlencode($_POST['fb_sig_app_id']);
-			        $redirect_uri = urlencode('http://www.facebook.com/apps/application.php?id='.$app_id);
+			        $redirect_uri = urlencode('http://www.facebook.com/apps/application.php?id='.$client_id);
 			        
 			        $install_url = 'https://graph.facebook.com/oauth/authorize?client_id='.$client_id.'&redirect_uri='.$redirect_uri;
 			        echo "<fb:redirect url='$install_url' />";
