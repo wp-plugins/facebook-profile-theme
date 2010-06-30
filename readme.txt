@@ -4,8 +4,8 @@ Contributors: cvedovini
 Donate link: http://vedovini.net/plugins/?utm_source=wordpress&utm_medium=plugin&utm_campaign=fbprofile
 Tags: Facebook,profile
 Requires at least: 2.7
-Tested up to: 2.9.2
-Stable tag: 1.0.6
+Tested up to: 3.0.0
+Stable tag: 1.1
 
 
 == Description ==
@@ -24,16 +24,20 @@ This plugin follows the [standard WordPress installation method](http://codex.wo
 1. In the `Advanced` tab, set the application type to `website`
 1. In the `Canvas` tab, set the `Canvas Callback URL` to your blog's URL and `Render Method` to `FBML`
 1. In the `Profiles` tab, give a name to your profile tab (your blog's name for example) and set the `Tab URL` field to `index.php` 
+1. Make sure to activate the `New Data Permissions` migration option on the `Migrations` tab
  
 To add your blog to your profile tab:
 
 1. Go to the application profile page
 1. Click on the `Go to Application` button
-1. Authorize the application
+1. Authorize the application, you will be redirected to the profile page
+1. Click again on the `Go to Application` button
 1. Click on the `Add profile tab` button at the top of the page 
 
 You will then have a new profile tab showing your last posts to people visiting your profile.
 
+If you already installed the plugin in a version prior to 1.1 you will need to activate the `New Data Permissions` migration 
+option on the `Migrations` tab of your application settings. However, Facebook should have activated it automatically after June the 30th.
 
 == Screenshots ==
 
@@ -41,6 +45,9 @@ You will then have a new profile tab showing your last posts to people visiting 
 
 
 == Changelog ==
+
+= version 1.1 =
+- Using new authorization SDK, see installation instruction for migration instruction
 
 = version 1.0.5 =
 - fixing application authorization issue following Facebook new SDK release

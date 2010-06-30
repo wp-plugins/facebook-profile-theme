@@ -5,7 +5,7 @@
 	Description: This plugin enables you to add your blog to your Facebook profile.
 	Author: Claude Vedovini
 	Author URI: http://vedovini.net/?utm_source=wordpress&utm_medium=plugin&utm_campaign=fbprofile
-	Version: 1.0.6
+	Version: 1.1
    
 	# Thanks to Malan Joubert for its Facebook theme that inspired the theme
 	# included in this plugin (http://www.foxinni.com/) and thanks to the
@@ -49,8 +49,10 @@ class FBProfilePlugin {
 				$is_added = (isset($_POST['fb_sig_added']) && $_POST['fb_sig_added'] == 1);
 
 				if (!$in_profile_tab && !$is_added) {
-			        $app_id = $_POST['fb_sig_app_id'];
-			        $install_url = "http://www.facebook.com/install.php?api_key=$app_id&v=1.0";
+			        $client_id = urlencode($_POST['fb_sig_app_id']);
+			        $redirect_uri = urlencode('http://www.facebook.com/apps/application.php?id='.$app_id);
+			        
+			        $install_url = 'https://graph.facebook.com/oauth/authorize?client_id='.$client_id.'&redirect_uri='.$redirect_uri;
 			        echo "<fb:redirect url='$install_url' />";
 			        die();
 				}
