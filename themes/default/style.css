@@ -105,7 +105,7 @@ color:#677284;
 line-height:1.5em; padding:0px 4px;}
 div.entry-content h5{font-size:1.3em;margin:1.5em 0 -0.4em;}
 div.entry-content h6{font-size:1.2em;margin:1.5em 0 -0.5em;}
-div.entry-content img.center,div.entry-content img.alignright,div.entry-content img.alignleft{border:1px solid #9aa1ae;}
+/* div.entry-content img.center,div.entry-content img.alignright,div.entry-content img.alignleft{border:1px solid #9aa1ae;} */
 div.entry-content ins,div.comments ol.commentlist ins{background:#f5f5dc;}
 div.entry-content ol ol{list-style:lower-alpha;}
 div.entry-content p,div.formcontainer p{margin:1em 0;}
