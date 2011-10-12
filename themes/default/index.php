@@ -1,23 +1,19 @@
 <?php require_once('functions.php'); ?>
-<style>
-<?php 
-include('style.css');
-
-if (file_exists(get_stylesheet_directory().'/fbprofile.css')){
-	include(get_stylesheet_directory().'/fbprofile.css');
-}
-?>
-</style>
+<html>
+<head>
+<title><?php bloginfo('name'); ?></title>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssbase/cssbase-min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo plugins_url('style.css' , __FILE__); ?>" />
+<?php if (file_exists(get_stylesheet_directory().'/fbprofile.css')): ?>
+<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/fbprofile.css" />	
+<?php endif; ?>
+<base target="_top" />
+</head>
+<body style="overflow:hidden;max-width:<?php echo fbprofile_is_page() ? '520px' : '760px'; ?>">
 <div id="container">
 <div id="content">
-<div class="hfeed" style="margin-top: 1px;">
-	<?php
-	if (!isset($_POST['fb_sig_in_profile_tab'])) { ?>
-	<fb:if-is-app-user>
-		<div style="margin-bottom:10px;text-align:right;"><fb:add-profile-tab /><fb:bookmark /></div>
-	</fb:else></fb:if-is-app-user>
-	<?php } ?>
-
+<div class="hfeed" style="margin-top: 10px;">
 	<?php while ( have_posts() ) : the_post() ?>
     <div id="post-<?php the_ID() ?>" class="<?php fbprofile_post_class() ?>">
     <div style="float:right"><fb:share-button class="url" href="<?php the_permalink() ?>" /></div>
@@ -45,13 +41,37 @@ if (file_exists(get_stylesheet_directory().'/fbprofile.css')){
 </div><!-- #content -->
 </div><!-- #container -->
 
+<div id="fb-root"></div>
+<script>
+	window.fbAsyncInit = function () {
+	    FB.init({
+	    	appId: '<?php echo get_option('FACEBOOK_APP_ID') ?>'
+	    });
+
+	    FB.Canvas.setSize();
+	};
+	
+	(function () {
+	    var e = document.createElement('script');
+	    e.type = 'text/javascript';
+	    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+	    e.async = true;
+	    document.getElementById('fb-root').appendChild(e);
+	} ());
 <?php
-# Google Analytics not authorized on profile tabs 
-if (!isset($_POST['fb_sig_in_profile_tab'])) {
-	$options  = get_option('GoogleAnalyticsPP');
-	if (!empty($options)) {
-		if ($options['uastring'] != '') {
-			echo '<fb:google-analytics uacct="' . $options['uastring'] . '" />';
-		}
-	}
-}
+# Google Analytics support 
+$options = get_option('GoogleAnalyticsPP');
+if (!empty($options) && !empty($options['uastring'])): ?>
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', '<?php echo $options['uastring']; ?>']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+<?php endif; ?>
+</script>
+</body>
+</html>

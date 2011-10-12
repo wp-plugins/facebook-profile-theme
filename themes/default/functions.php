@@ -1,5 +1,9 @@
 <?php
 
+function fbprofile_is_page() {
+	return isset($_REQUEST['signed_request']) && isset($_REQUEST['from_page']);
+}
+
 function fbprofile_content($more_link_text = '(more...)', $stripteaser = 0, $more_file = '') {
 	$content = get_the_content($more_link_text, $stripteaser, $more_file);
 	// Apply only Wordpress default filters
