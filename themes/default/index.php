@@ -16,11 +16,11 @@
 <div class="hfeed" style="margin-top: 10px;">
 	<?php while ( have_posts() ) : the_post() ?>
     <div id="post-<?php the_ID() ?>" class="<?php fbprofile_post_class() ?>">
-    <div style="float:right"><fb:share-button class="url" href="<?php the_permalink() ?>" /></div>
         <h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf(__('Permalink to %s', 'fbprofile'), wp_specialchars(get_the_title(), 1)) ?>" rel="bookmark"><?php the_title() ?></a></h2>
         <div class="entry-content">
 		<?php fbprofile_content('<span class="more-link">'.__('Continue Reading &raquo;', 'fbprofile').'</span>'); ?>
         </div>
+        <div class="fb-like" data-href="<?php the_permalink() ?>" data-send="true" data-width="<?php echo fbprofile_is_page() ? '520' : '760'; ?>" data-show-faces="true"></div>
         <div class="entry-meta">
             <span class="entry-date"><?php _e('Written on', 'fbprofile') ?> <abbr class="published" title="<?php the_time('Y-m-d\TH:i:sO'); ?>"><?php unset($previousday); printf(__('%1$s', 'fbprofile'), the_date('d F Y', false)) ?></abbr></span>
             <span class="meta-sep"> <?php _e('by', 'fbprofile') ?> </span> <span class="entry-author author vcard"><?php the_author_posts_link(); ?></span>
@@ -45,7 +45,8 @@
 <script>
 	window.fbAsyncInit = function () {
 	    FB.init({
-	    	appId: '<?php echo get_option('FACEBOOK_APP_ID') ?>'
+	    	appId: '<?php echo get_option('FACEBOOK_APP_ID') ?>',
+	    	xfbml: true
 	    });
 
 	    FB.Canvas.setSize();

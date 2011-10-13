@@ -5,7 +5,7 @@ Donate link: http://vedovini.net/plugins/?utm_source=wordpress&utm_medium=plugin
 Tags: Facebook,profile
 Requires at least: 2.7
 Tested up to: 3.2.1
-Stable tag: 2.0
+Stable tag: 2.0.1
 
 
 == Description ==
@@ -34,16 +34,18 @@ This plugin follows the [standard WordPress installation method](http://codex.wo
  
 To add your blog to your page tab:
 
-1. Go to the application profile page (http://www.facebook.com/profile.php?id=APP_ID)
-1. Click on the `Add to my page` link 
-1. Authorize the application, you will be redirected to the profile page
-1. Click again on the `Go to Application` button
-1. Click on the `Add profile tab` button at the top of the page 
+1. Go to the application profile page (http://www.facebook.com/apps/application.php?id=APP_ID)
+1. Click on the `Add to My Page` link (lower left corner) 
+1. In the pop-up click on the `Add to Page` button corresponding to your page
+1. Click on the `Close` button
+1. You are done! 
 
 You will then have a new profile tab showing your last posts to people visiting your profile.
 
-If you already installed the plugin in a version prior to 1.1 you will need to activate the `New Data Permissions` migration 
-option on the `Migrations` tab of your application settings. However, Facebook should have activated it automatically after June the 30th.
+If you already installed the plugin in a version prior to 2.0 make sure the application settings are changed to what is described above.
+
+If your blog shows up in the page with your normal theme (i.e. not using the integrated Facebook theme) make sure the URLs you provided in the App settings are correct and will not send a `redirect` to the Facebook iFrame.
+
 
 == Screenshots ==
 
@@ -51,6 +53,9 @@ option on the `Migrations` tab of your application settings. However, Facebook s
 
 
 == Changelog ==
+
+= version 2.0.1 =
+- Bug fix to the documentation and adding a `Like` button to posts in place of `Share`
 
 = version 2.0 =
 - Migrating to IFrame and signed_request
