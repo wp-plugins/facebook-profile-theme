@@ -5,7 +5,7 @@
 	Description: This plugin enables you to add your blog to your Facebook profile.
 	Author: Claude Vedovini
 	Author URI: http://vedovini.net/?utm_source=wordpress&utm_medium=plugin&utm_campaign=fbprofile
-	Version: 1.1
+	Version: 2.0.1
    
 	# Thanks to Malan Joubert for its Facebook theme that inspired the theme
 	# included in this plugin (http://www.foxinni.com/) and thanks to the
@@ -27,6 +27,8 @@
 	# See the GNU lesser General Public License for more details.
 */
 define('FBPROFILE_PLUGIN_NAME', basename(dirname(__FILE__)));
+define('FBPROFILE_DOMAIN', 'fbprofile-plugin');
+define('FBPROFILE_DIR', WP_PLUGIN_DIR . '/' . FBPROFILE_PLUGIN_NAME .'/');
 
 
 class FBProfilePlugin {
@@ -36,27 +38,48 @@ class FBProfilePlugin {
 		add_filter( 'theme_root', array(&$this, 'theme_root') );
 		add_filter( 'theme_root_uri', array(&$this, 'theme_root_uri') );
 		add_filter( 'template', array(&$this, 'get_template') );
+		add_action('init', array(&$this, 'init'));
+	}
+	
+	function init() {
+		if (is_admin()) {
+			add_action('admin_menu', array(& $this, 'admin_menu'));
+		}
+	}
+	
+	function admin_menu() {
+		load_plugin_textdomain(FBPROFILE_DOMAIN, FBPROFILE_DIR);
+		add_options_page(__('Facebook Profile Theme Options', FBPROFILE_DOMAIN), __('Facebook Profile Theme', FBPROFILE_DOMAIN), 
+			'manage_options', 'fbprofile_options', array(&$this, 'option_page'));
 	}
 
+	function option_page() { ?>
+<div class="wrap">
+<h2><?php _e('Facebook Profile Theme Options', FBPROFILE_DOMAIN); ?></h2>
+
+<form method="post" action="options.php">
+<?php wp_nonce_field('update-options'); ?>
+<table class="form-table">
+	<tr valign="top">
+		<th scope="row"><?php _e('Facebook App ID', FBPROFILE_DOMAIN); ?></th>
+		<td><input id="FACEBOOK_APP_ID" name="FACEBOOK_APP_ID" type="text" value="<?php echo get_option('FACEBOOK_APP_ID'); ?>" />
+			<p><em><?php _e('App ID/API Key as given in the Facebook application settings.', FBPROFILE_DOMAIN); ?></em></p>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="action" value="update" />
+<input type="hidden" name="page_options" value="FACEBOOK_APP_ID" />
+<p class="submit"><input type="submit" name="submit"
+	value="<?php _e('Save Changes'); ?>" /></p>
+</form>
+</div><?php
+	}
+	
 	function from_facebook() {
 		static $is_facebook;
 		
 		if (!isset($is_facebook)) {
-			$is_facebook = isset($_POST['fb_sig']);
-			
-			if ($is_facebook) {
-				$in_profile_tab = (isset($_POST['fb_sig_in_profile_tab']) && $_POST['fb_sig_in_profile_tab'] == 1);
-				$is_added = (isset($_POST['fb_sig_added']) && $_POST['fb_sig_added'] == 1);
-
-				if (!$in_profile_tab && !$is_added) {
-			        $client_id = urlencode($_POST['fb_sig_app_id']);
-			        $redirect_uri = urlencode('http://www.facebook.com/apps/application.php?id='.$client_id);
-			        
-			        $install_url = 'https://graph.facebook.com/oauth/authorize?client_id='.$client_id.'&redirect_uri='.$redirect_uri;
-			        echo "<fb:redirect url='$install_url' />";
-			        die();
-				}
-			} 
+			$is_facebook = isset($_REQUEST['signed_request']);
 		}
 		
 		return $is_facebook;
