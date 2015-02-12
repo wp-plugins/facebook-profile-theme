@@ -10,6 +10,8 @@ Stable tag: 2.0.1
 
 == Description ==
 
+This plugin is not maintained anymore.
+
 This plugin enables you to create a Facebook page tab featuring your blog.
 
 
